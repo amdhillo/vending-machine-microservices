@@ -4,16 +4,16 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "WeatherService.h"
+#include "BeveragePreferenceService.h"
 
 namespace vending_machine {
 
 
-WeatherService_GetWeather_args::~WeatherService_GetWeather_args() noexcept {
+BeveragePreferenceService_GetBeverage_args::~BeveragePreferenceService_GetBeverage_args() noexcept {
 }
 
 
-uint32_t WeatherService_GetWeather_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t BeveragePreferenceService_GetBeverage_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -35,9 +35,9 @@ uint32_t WeatherService_GetWeather_args::read(::apache::thrift::protocol::TProto
     switch (fid)
     {
       case 1:
-        if (ftype == ::apache::thrift::protocol::T_I64) {
-          xfer += iprot->readI64(this->city);
-          this->__isset.city = true;
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->btype);
+          this->__isset.btype = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -54,13 +54,13 @@ uint32_t WeatherService_GetWeather_args::read(::apache::thrift::protocol::TProto
   return xfer;
 }
 
-uint32_t WeatherService_GetWeather_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t BeveragePreferenceService_GetBeverage_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("WeatherService_GetWeather_args");
+  xfer += oprot->writeStructBegin("BeveragePreferenceService_GetBeverage_args");
 
-  xfer += oprot->writeFieldBegin("city", ::apache::thrift::protocol::T_I64, 1);
-  xfer += oprot->writeI64(this->city);
+  xfer += oprot->writeFieldBegin("btype", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString(this->btype);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -69,17 +69,17 @@ uint32_t WeatherService_GetWeather_args::write(::apache::thrift::protocol::TProt
 }
 
 
-WeatherService_GetWeather_pargs::~WeatherService_GetWeather_pargs() noexcept {
+BeveragePreferenceService_GetBeverage_pargs::~BeveragePreferenceService_GetBeverage_pargs() noexcept {
 }
 
 
-uint32_t WeatherService_GetWeather_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t BeveragePreferenceService_GetBeverage_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("WeatherService_GetWeather_pargs");
+  xfer += oprot->writeStructBegin("BeveragePreferenceService_GetBeverage_pargs");
 
-  xfer += oprot->writeFieldBegin("city", ::apache::thrift::protocol::T_I64, 1);
-  xfer += oprot->writeI64((*(this->city)));
+  xfer += oprot->writeFieldBegin("btype", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeString((*(this->btype)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -88,11 +88,11 @@ uint32_t WeatherService_GetWeather_pargs::write(::apache::thrift::protocol::TPro
 }
 
 
-WeatherService_GetWeather_result::~WeatherService_GetWeather_result() noexcept {
+BeveragePreferenceService_GetBeverage_result::~BeveragePreferenceService_GetBeverage_result() noexcept {
 }
 
 
-uint32_t WeatherService_GetWeather_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t BeveragePreferenceService_GetBeverage_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -114,11 +114,17 @@ uint32_t WeatherService_GetWeather_result::read(::apache::thrift::protocol::TPro
     switch (fid)
     {
       case 0:
-        if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast5;
-          xfer += iprot->readI32(ecast5);
-          this->success = (WeatherType::type)ecast5;
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->success);
           this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->se.read(iprot);
+          this->__isset.se = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -135,15 +141,19 @@ uint32_t WeatherService_GetWeather_result::read(::apache::thrift::protocol::TPro
   return xfer;
 }
 
-uint32_t WeatherService_GetWeather_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t BeveragePreferenceService_GetBeverage_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("WeatherService_GetWeather_result");
+  xfer += oprot->writeStructBegin("BeveragePreferenceService_GetBeverage_result");
 
   if (this->__isset.success) {
-    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_I32, 0);
-    xfer += oprot->writeI32((int32_t)this->success);
+    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRING, 0);
+    xfer += oprot->writeString(this->success);
+    xfer += oprot->writeFieldEnd();
+  } else if (this->__isset.se) {
+    xfer += oprot->writeFieldBegin("se", ::apache::thrift::protocol::T_STRUCT, 1);
+    xfer += this->se.write(oprot);
     xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();
@@ -152,11 +162,11 @@ uint32_t WeatherService_GetWeather_result::write(::apache::thrift::protocol::TPr
 }
 
 
-WeatherService_GetWeather_presult::~WeatherService_GetWeather_presult() noexcept {
+BeveragePreferenceService_GetBeverage_presult::~BeveragePreferenceService_GetBeverage_presult() noexcept {
 }
 
 
-uint32_t WeatherService_GetWeather_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t BeveragePreferenceService_GetBeverage_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -178,11 +188,17 @@ uint32_t WeatherService_GetWeather_presult::read(::apache::thrift::protocol::TPr
     switch (fid)
     {
       case 0:
-        if (ftype == ::apache::thrift::protocol::T_I32) {
-          int32_t ecast6;
-          xfer += iprot->readI32(ecast6);
-          (*(this->success)) = (WeatherType::type)ecast6;
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString((*(this->success)));
           this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 1:
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->se.read(iprot);
+          this->__isset.se = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -199,19 +215,19 @@ uint32_t WeatherService_GetWeather_presult::read(::apache::thrift::protocol::TPr
   return xfer;
 }
 
-WeatherType::type WeatherServiceClient::GetWeather(const int64_t city)
+void BeveragePreferenceServiceClient::GetBeverage(std::string& _return, const std::string& btype)
 {
-  send_GetWeather(city);
-  return recv_GetWeather();
+  send_GetBeverage(btype);
+  recv_GetBeverage(_return);
 }
 
-void WeatherServiceClient::send_GetWeather(const int64_t city)
+void BeveragePreferenceServiceClient::send_GetBeverage(const std::string& btype)
 {
   int32_t cseqid = 0;
-  oprot_->writeMessageBegin("GetWeather", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("GetBeverage", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  WeatherService_GetWeather_pargs args;
-  args.city = &city;
+  BeveragePreferenceService_GetBeverage_pargs args;
+  args.btype = &btype;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -219,7 +235,7 @@ void WeatherServiceClient::send_GetWeather(const int64_t city)
   oprot_->getTransport()->flush();
 }
 
-WeatherType::type WeatherServiceClient::recv_GetWeather()
+void BeveragePreferenceServiceClient::recv_GetBeverage(std::string& _return)
 {
 
   int32_t rseqid = 0;
@@ -239,25 +255,28 @@ WeatherType::type WeatherServiceClient::recv_GetWeather()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  if (fname.compare("GetWeather") != 0) {
+  if (fname.compare("GetBeverage") != 0) {
     iprot_->skip(::apache::thrift::protocol::T_STRUCT);
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  WeatherType::type _return;
-  WeatherService_GetWeather_presult result;
+  BeveragePreferenceService_GetBeverage_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
   if (result.__isset.success) {
-    return _return;
+    // _return pointer has now been filled
+    return;
   }
-  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "GetWeather failed: unknown result");
+  if (result.__isset.se) {
+    throw result.se;
+  }
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "GetBeverage failed: unknown result");
 }
 
-bool WeatherServiceProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
+bool BeveragePreferenceServiceProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
   ProcessMap::iterator pfn;
   pfn = processMap_.find(fname);
   if (pfn == processMap_.end()) {
@@ -276,38 +295,41 @@ bool WeatherServiceProcessor::dispatchCall(::apache::thrift::protocol::TProtocol
   return true;
 }
 
-void WeatherServiceProcessor::process_GetWeather(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void BeveragePreferenceServiceProcessor::process_GetBeverage(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = NULL;
   if (this->eventHandler_.get() != NULL) {
-    ctx = this->eventHandler_->getContext("WeatherService.GetWeather", callContext);
+    ctx = this->eventHandler_->getContext("BeveragePreferenceService.GetBeverage", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "WeatherService.GetWeather");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "BeveragePreferenceService.GetBeverage");
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preRead(ctx, "WeatherService.GetWeather");
+    this->eventHandler_->preRead(ctx, "BeveragePreferenceService.GetBeverage");
   }
 
-  WeatherService_GetWeather_args args;
+  BeveragePreferenceService_GetBeverage_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postRead(ctx, "WeatherService.GetWeather", bytes);
+    this->eventHandler_->postRead(ctx, "BeveragePreferenceService.GetBeverage", bytes);
   }
 
-  WeatherService_GetWeather_result result;
+  BeveragePreferenceService_GetBeverage_result result;
   try {
-    result.success = iface_->GetWeather(args.city);
+    iface_->GetBeverage(result.success, args.btype);
     result.__isset.success = true;
+  } catch (ServiceException &se) {
+    result.se = se;
+    result.__isset.se = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != NULL) {
-      this->eventHandler_->handlerError(ctx, "WeatherService.GetWeather");
+      this->eventHandler_->handlerError(ctx, "BeveragePreferenceService.GetBeverage");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
-    oprot->writeMessageBegin("GetWeather", ::apache::thrift::protocol::T_EXCEPTION, seqid);
+    oprot->writeMessageBegin("GetBeverage", ::apache::thrift::protocol::T_EXCEPTION, seqid);
     x.write(oprot);
     oprot->writeMessageEnd();
     oprot->getTransport()->writeEnd();
@@ -316,41 +338,41 @@ void WeatherServiceProcessor::process_GetWeather(int32_t seqid, ::apache::thrift
   }
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->preWrite(ctx, "WeatherService.GetWeather");
+    this->eventHandler_->preWrite(ctx, "BeveragePreferenceService.GetBeverage");
   }
 
-  oprot->writeMessageBegin("GetWeather", ::apache::thrift::protocol::T_REPLY, seqid);
+  oprot->writeMessageBegin("GetBeverage", ::apache::thrift::protocol::T_REPLY, seqid);
   result.write(oprot);
   oprot->writeMessageEnd();
   bytes = oprot->getTransport()->writeEnd();
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != NULL) {
-    this->eventHandler_->postWrite(ctx, "WeatherService.GetWeather", bytes);
+    this->eventHandler_->postWrite(ctx, "BeveragePreferenceService.GetBeverage", bytes);
   }
 }
 
-::std::shared_ptr< ::apache::thrift::TProcessor > WeatherServiceProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
-  ::apache::thrift::ReleaseHandler< WeatherServiceIfFactory > cleanup(handlerFactory_);
-  ::std::shared_ptr< WeatherServiceIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
-  ::std::shared_ptr< ::apache::thrift::TProcessor > processor(new WeatherServiceProcessor(handler));
+::std::shared_ptr< ::apache::thrift::TProcessor > BeveragePreferenceServiceProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
+  ::apache::thrift::ReleaseHandler< BeveragePreferenceServiceIfFactory > cleanup(handlerFactory_);
+  ::std::shared_ptr< BeveragePreferenceServiceIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
+  ::std::shared_ptr< ::apache::thrift::TProcessor > processor(new BeveragePreferenceServiceProcessor(handler));
   return processor;
 }
 
-WeatherType::type WeatherServiceConcurrentClient::GetWeather(const int64_t city)
+void BeveragePreferenceServiceConcurrentClient::GetBeverage(std::string& _return, const std::string& btype)
 {
-  int32_t seqid = send_GetWeather(city);
-  return recv_GetWeather(seqid);
+  int32_t seqid = send_GetBeverage(btype);
+  recv_GetBeverage(_return, seqid);
 }
 
-int32_t WeatherServiceConcurrentClient::send_GetWeather(const int64_t city)
+int32_t BeveragePreferenceServiceConcurrentClient::send_GetBeverage(const std::string& btype)
 {
   int32_t cseqid = this->sync_->generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(this->sync_.get());
-  oprot_->writeMessageBegin("GetWeather", ::apache::thrift::protocol::T_CALL, cseqid);
+  oprot_->writeMessageBegin("GetBeverage", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  WeatherService_GetWeather_pargs args;
-  args.city = &city;
+  BeveragePreferenceService_GetBeverage_pargs args;
+  args.btype = &btype;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -361,7 +383,7 @@ int32_t WeatherServiceConcurrentClient::send_GetWeather(const int64_t city)
   return cseqid;
 }
 
-WeatherType::type WeatherServiceConcurrentClient::recv_GetWeather(const int32_t seqid)
+void BeveragePreferenceServiceConcurrentClient::recv_GetBeverage(std::string& _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -390,7 +412,7 @@ WeatherType::type WeatherServiceConcurrentClient::recv_GetWeather(const int32_t 
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
       }
-      if (fname.compare("GetWeather") != 0) {
+      if (fname.compare("GetBeverage") != 0) {
         iprot_->skip(::apache::thrift::protocol::T_STRUCT);
         iprot_->readMessageEnd();
         iprot_->getTransport()->readEnd();
@@ -399,19 +421,23 @@ WeatherType::type WeatherServiceConcurrentClient::recv_GetWeather(const int32_t 
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      WeatherType::type _return;
-      WeatherService_GetWeather_presult result;
+      BeveragePreferenceService_GetBeverage_presult result;
       result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
       if (result.__isset.success) {
+        // _return pointer has now been filled
         sentry.commit();
-        return _return;
+        return;
+      }
+      if (result.__isset.se) {
+        sentry.commit();
+        throw result.se;
       }
       // in a bad state, don't commit
-      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "GetWeather failed: unknown result");
+      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "GetBeverage failed: unknown result");
     }
     // seqid != rseqid
     this->sync_->updatePending(fname, mtype, rseqid);
